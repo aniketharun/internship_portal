@@ -1,0 +1,35 @@
+const mongoose = require('mongoose');
+
+const applicationSchema = new mongoose.Schema({
+    internship: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Internship',
+        required: true
+    },
+    student: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
+    resumeUrl: {
+        type: String,
+        required: [true, 'Please provide a link to your resume']
+    },
+    coverLetter: {
+        type: String
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'shortlisted', 'interviewing', 'accepted', 'rejected'],
+        default: 'pending'
+    },
+    appliedAt: {
+        type: Date,
+        default: Date.now
+    }
+});
+
+// Prevent duplicate applications from the same student for the same internship
+applicationSchema.index({ internship: 1, student: 1 }, { unique: true });
+
+module.exports = mongoose.model('Application', applicationSchema);

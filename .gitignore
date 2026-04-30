@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Environment variables — never commit secrets
+.env
+client/.env
+server/.env
+
+# Build output
+client/dist/
+client/build/
+
+# Logs
+*.log
+npm-debug.log*
+server/server_log.txt
+server/server_error.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Uploads (user-uploaded files, keep out of git)
+server/public/uploads/
+
+# Debug/test scripts (optional — remove these lines if you want to keep them)
+debug_login_test.js
+server/test_login.js
+server/test_pdf.js
+server/test-backend.js
